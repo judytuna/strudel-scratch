@@ -31,7 +31,7 @@ function generateScale(n) {
 let hundoOriginal = generateScale(100);
 
 function makeScale(n) {
-  return hundoOriginal.slice(0, n).concat(a*2);
+  return hundoOriginal.slice(0, n+1).concat(a*2); //fix off by one error. 5 should result in pentatonic scale, so 6 items in array
 }
 
 
