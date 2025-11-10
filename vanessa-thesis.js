@@ -17,8 +17,8 @@ function generateFractionTerms(n) {
   return terms;
 }
 
-// Generate 41-note scale using the fraction terms function
-function generateScale(n) {
+// Generate original scale using the fraction terms function
+function generateOriginalUpTo(n) {
   let terms = generateFractionTerms(n);
   let scale = [0, a];
   for (let term of terms.slice(1)) {
@@ -28,13 +28,14 @@ function generateScale(n) {
   return scale;
 }
 
-let hundoOriginal = generateScale(100);
+let hundoOriginal = generateOriginalUpTo(100);
 
+// results in array in "original" order, but it starts with 0 so the index numbers line up with the thesis tables
 function makeScale(n) {
   return hundoOriginal.slice(0, n+1).concat(a*2); //fix off by one error. 5 should result in pentatonic scale, so 6 items in array
 }
 
-
+// this function gets rid of the 0 and also turns it into a string that freq() can take!!!
 function makeOrdered(n) {
   let scale = makeScale(n);
   let sorted = scale.slice(1).sort((a, b) => a - b);
@@ -42,4 +43,4 @@ function makeOrdered(n) {
 }
 
 setcpm(110);
-freq(makeOrdered(41));
+freq(makeOrdered(5));
